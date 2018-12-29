@@ -1,4 +1,4 @@
-package s4.B183376; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B183376; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -14,7 +14,6 @@ interface FrequencerInterface {     // This interface provides the design for fr
     // For the incorrect value of START or END, the behavior is undefined.
 */
 
-
 public class Frequencer implements FrequencerInterface{
     // Code to Test, *warning: This code  contains intentional problem*
     byte [] myTarget;
@@ -28,7 +27,7 @@ public class Frequencer implements FrequencerInterface{
 	for(int start = 0; start<spaceLength; start++) { // Is it OK?
 	    boolean abort = false;
 	    for(int i = 0; i<targetLength; i++) {
-		if(myTarget[i] != mySpace[start+i]) { abort = true; break; }
+		      if(myTarget[i] != mySpace[start+i]) { abort = true; break; }
 	    }
 	    if(abort == false) { count++; }
 	}

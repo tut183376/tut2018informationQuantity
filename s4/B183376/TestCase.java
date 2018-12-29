@@ -12,6 +12,9 @@ interface FrequencerInterface {     // This interface provides the design for fr
     int subByteFrequency(int start, int end);
     // get the frequency of subByte of taget, i.e target[start], taget[start+1], ... , target[end-1].
     // For the incorrect value of START or END, the behavior is undefined.
+    // <Frequencerの問題点>
+    //・Targetの長さがSpaceの長さより長い場合プログラム的に問題がある。
+    //・Targetの長さが二文字以上の場合プログラム的に問題がある。
 }
 */
 
@@ -27,6 +30,7 @@ public interface InformationEstimatorInterface{
 // Otherwise, estimation of information quantity,
 }
 */
+
 
 
 public class TestCase {
@@ -76,6 +80,50 @@ public class TestCase {
 	    System.out.println("Exception occurred: STOP");
 	}
 
+  try {
+      FrequencerInterface  myObject;
+      int freq;
+      System.out.println("checking s4.B183376.Frequencer");
+      myObject = new s4.B183376.Frequencer();
+      myObject.setSpace("AAAA".getBytes());
+      myObject.setTarget("AAAAAA".getBytes());
+      freq = myObject.frequency();
+      System.out.print("\"AAAAA\" in \"AA\" appears "+freq+" times. ");
+      if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+  }
+  catch(Exception e) {
+      System.out.println("Exception occurred: STOP");
+  }
+
+  try {
+      FrequencerInterface  myObject;
+      int freq;
+      System.out.println("checking s4.B183376.Frequencer");
+      myObject = new s4.B183376.Frequencer();
+      myObject.setSpace("1234123".getBytes());
+      myObject.setTarget("123".getBytes());
+      freq = myObject.frequency();
+      System.out.print("\"1234123\" in \"123\" appears "+freq+" times. ");
+      if(2 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+  }
+  catch(Exception e) {
+      System.out.println("Exception occurred: STOP");
+  }
+
+  try {
+      FrequencerInterface  myObject;
+      int freq;
+      System.out.println("checking s4.B183376.Frequencer");
+      myObject = new s4.B183376.Frequencer();
+      myObject.setSpace("AAAA".getBytes());
+      myObject.setTarget("AA".getBytes());
+      freq = myObject.frequency();
+      System.out.print("\"AA\" in \"AAAA\" appears "+freq+" times. ");
+      if(2 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+  }
+  catch(Exception e) {
+      System.out.println("Exception occurred: STOP");
+  }
 
 	try {
 	    InformationEstimatorInterface myObject;
