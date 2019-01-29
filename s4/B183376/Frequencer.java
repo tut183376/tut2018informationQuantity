@@ -1,3 +1,4 @@
+
 package s4.B183376; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import	java.lang.*;
 import	s4.specification.*;
@@ -53,23 +54,32 @@ public	class	Frequencer	implements	FrequencerInterface{
     //
     //	****		Please	write	code	here...	***
     //
-		if(i > j){
-			int tmp = i;
-			i = j;
-			j= tmp;
-		}
-		if(i==j){return 0;}
-    while(true){
-    if(mySpace[i] > mySpace[j]){return 1;}
-    else if(mySpace[i] < mySpace[j]){return -1;}
-    else if(mySpace[i] == mySpace[j]){
-      if(j==mySpace.length-1){
-        return 1;
-      }
-      i++;
-      j++;
-    }
-    }
+            int flag = 1;
+            if(i > j){
+                int tmp = i;
+                i = j;
+                j= tmp;
+                flag = -1;
+            }
+            if(i==j){
+                return 0;
+            }
+            while(true){
+                if(mySpace[i] > mySpace[j]){
+                    return 1 * flag;
+                }
+                else if(mySpace[i] < mySpace[j]){
+                    //System.out.println("-1deta");
+                    return -1 * flag;
+                }
+                else if(mySpace[i] == mySpace[j]){
+                    if(j==mySpace.length-1){
+                        return 1 * flag;
+                    }
+                    i++;
+                    j++;
+                }
+            }
 		}
 
     public	void	setSpace(byte	[]space)	{
@@ -86,28 +96,33 @@ public	class	Frequencer	implements	FrequencerInterface{
       //	****		Please	write	code	here...	***
       //
 
-			printSuffixArray();
-			System.out.println();
-      for(int i=0;i<mySpace.length;i++){
-       for(int j = i + 1; j < mySpace.length; j++){
-        int x=suffixCompare(suffixArray[j-1],suffixArray[j]);
-				System.out.println(x);
+        printSuffixArray();
+        System.out.println();
+        //int test = suffixCompare(suffixArray[1],suffixArray[2]);
+        //System.out.println(test);
+        for(int i = 0; i < mySpace.length; i++){
+            for(int j = mySpace.length - 1; j > i; j--){
+                //System.out.println(j);
+                int x=suffixCompare(suffixArray[j-1],suffixArray[j]);
+				//System.out.println(x);
 
-        if(x==1){
-          int y = suffixArray[j-1];
-          suffixArray[j-1]=suffixArray[j];
-          suffixArray[j]=y;
-        }
-        else if(x==0){
-          System.out.println("ERROR");
-        }
+                if(x==1){
+                    int y = suffixArray[j-1];
+                    suffixArray[j-1]=suffixArray[j];
+                    suffixArray[j]=y;
+                }
+                else if(x==0){
+                    System.out.println("ERROR");
+                }
+                //System.out.println();
+                //printSuffixArray();
 
-      }
+            }
 			/*
 			printSuffixArray();
 			System.out.println();
 			*/
-    }
+        }
 	}
 
 
@@ -184,9 +199,9 @@ public	class	Frequencer	implements	FrequencerInterface{
 								Frequencer	frequencerObject;
 								try	{
 												frequencerObject	=	new	Frequencer();
+												//frequencerObject.setSpace("cab".getBytes());
 												frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-												//frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-												//frequencerObject.printSuffixArray();	//	you	may	use	this	line	for	DEBUG
+												frequencerObject.printSuffixArray();	//	you	may	use	this	line	for	DEBUG
 												/*	Example	from	"Hi	Ho	Hi	Ho"
 															0:	Hi	Ho
 															1:	Ho
